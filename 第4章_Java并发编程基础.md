@@ -22,3 +22,17 @@
 1. 构造线程对象：由其parent线程来进行空间分配，而child线程继承了parent是否为Daemon、优先级和加载资源的contextClassLoader以及可继承的ThreadLocal，同时分配唯一ID标识。
 2. 线程对象初始化完后调用start()方法就可以启动这个线程。
    > 线程start()方法的含义：当前线程（即parent线程）同步告知Java虚拟机，只要线程规划器空闲，应立即启动调用start()方法的线程。
+
+
+
+
+
+
+
+
+
+
+
+
+
+ [Go back to README](README.md)
