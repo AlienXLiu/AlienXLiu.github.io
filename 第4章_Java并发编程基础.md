@@ -22,7 +22,34 @@
 1. 构造线程对象：由其parent线程来进行空间分配，而child线程继承了parent是否为Daemon、优先级和加载资源的contextClassLoader以及可继承的ThreadLocal，同时分配唯一ID标识。
 2. 线程对象初始化完后调用start()方法就可以启动这个线程。
    > 线程start()方法的含义：当前线程（即parent线程）同步告知Java虚拟机，只要线程规划器空闲，应立即启动调用start()方法的线程。
-
+3. 理解中断：中断可以理解为线程一个标识位属性，它表示一个运行中的线程是否被其它线程进行了中断操作
+   * 其它线程通过调用该线程的interrupt()方法对其进行中断操作。
+   * 线程自身通过isInterrupted()来进行判断是否被中断。
+   * 调用静态方法Thread.interrupted()对当前线程的中断标识位进行复位。 
+4. 过期的suspend()、resume()、stop()
+   > suspend() 暂停线程;
+   
+   > resume() 恢复线程;
+   
+   > stop() 停止线程;
+   
+### 线程间通信
+1. volatile和synchronized关键字
+   > volatile 告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。
+   
+   > synchronized 可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一时刻，只能有一个线程处理方法或同步块中，它保证了线程对变量访问的可见性和排它性。
+2. 对象、对象的监视器、同步队列和执行线程之间的关系
+    
+    ```flow
+    st=>start: 开始
+    op=>operation: My Operation
+    cond=>condition: Yes or No?
+    e=>end
+    st->op->cond
+    cond(yes)->e
+    cond(no)->op
+    &```
+   
 
 
 
