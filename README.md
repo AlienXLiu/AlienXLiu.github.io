@@ -12,4 +12,4 @@
 * [第10章 Executor框架](#)
 * [第11章 Java并发编程实践](#)
  
-[wiki](/wiki)
+[wiki](../wiki)
