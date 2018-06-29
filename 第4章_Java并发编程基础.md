@@ -39,25 +39,24 @@
    
    > synchronized 可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一时刻，只能有一个线程处理方法或同步块中，它保证了线程对变量访问的可见性和排它性。
 2. 对象、对象的监视器、同步队列和执行线程之间的关系
+![thread_01](picture/thread_01.jpg "对象、对象的监视器、同步队列和执行线程之间的关系")
+
+   任意线程对Object（Object由synchronized保护）的访问：
+     1.  首先要获得Object的监视器。
+     2.  如果获取失败，线程进入同步队列，线程状态变为BLOCKED。 
+     3.  当访问Object的前驱（获得了锁的线程）释放了锁，则该释放操作唤醒阻塞在同步队列中的线程，使其重新尝试对监视器的获得。
+3. 等待/通知机制
+    > 等待/通知的相关方法
     
-<img src='https://g.gravizo.com/svg?
- digraph G {
-   main -> parse -> execute;
-   main -> init;
-   main -> cleanup;
-   execute -> make_string;
-   execute -> printf
-   init -> make_string;
-   main -> printf;
-   execute -> compare;
- }
-'/>
-  
-
-![flower](picture/1.png "美丽花儿")
-
-
-
+    | 方法名称 | 描述 |  
+    | :-: | :-: |   
+    | notify() | 通知一个在对象上等待的线程，使其从wait()方法返回，而返回的前提是该线程获取到对象的锁 |   
+    | notify() | 通知所有等待在该对象上的线程 |   
+    | wait() | 调用该方法的线程进入WAITING状态，只有等待另外线程的通知或被中断才会返回，需要注意，<font color="red">调用wait()方法后，会释放对象的锁</font> |  
+    | wait(long) | 超时等待一段时间，这里的参数时间是毫秒，也就是等待n毫秒，如果没有通知就超时返回 |   
+    | wait(long, int) | 对于超时时间更细粒度的控制，可以达到纳秒 |   
+    
+    
 
 
 
