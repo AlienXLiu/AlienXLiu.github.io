@@ -39,12 +39,29 @@
    
    > synchronized 可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一时刻，只能有一个线程处理方法或同步块中，它保证了线程对变量访问的可见性和排它性。
 2. 对象、对象的监视器、同步队列和执行线程之间的关系
+    
+<img src='https://g.gravizo.com/svg?
+ digraph G {
+   main -> parse -> execute;
+   main -> init;
+   main -> cleanup;
+   execute -> make_string;
+   execute -> printf
+   init -> make_string;
+   main -> printf;
+   execute -> compare;
+ }
+'/>
+  
 
 ![flower](picture/1.png "美丽花儿")
 
 
 
 
-[Go back to README](README.md) 
 
 
+
+
+
+ [Go back to README](README.md)
