@@ -91,8 +91,28 @@
    
    > 管道输入/输出流主要包括了如下4种具体实现：PipedOutputStream、PipedInputStream、
      PipedReader和PipedWriter，前两种面向字节，而后两种面向字符。
-    
    
+   _示列代码：fourth_chapter.Piped.java_
+   
+6. Thread.join()的使用
+   > 如果线程A执行了Thread.join()，其语义是：当前线程A等待Thread线程终止后才从Thread.join()返回。
+   1. Thread.join()
+   2. Thread.join(long millis)
+   3. Thread.join(long millis, int nanos)
+ 
+   _示列代码：fourth_chapter.Join.java_
+   
+7. ThreadLocal的使用
+   * ThreadLocal，即线程变量，是一个以ThreadLocal对象为键、任意对象为值的存储结构。
+   * ThreadLocal被附带在线程上，也让就是说一个线程可以根据一个ThreadLocal对象查询到绑定在这个线程上的一个值。
+   * 通过set()方法设置值，在当前线程下再通过get()方法获取原先的设置的值。
+   
+   _示列代码：fourth_chapter.Profiler.java_
+   
+### 线程应用实例
+   
+
+  
       
 
 
