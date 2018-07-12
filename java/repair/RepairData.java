@@ -53,8 +53,7 @@ public class RepairData {
 			int state = status.getStatusCode();
 			if (state == HttpStatus.SC_OK) {
 				HttpEntity responseEntity = response.getEntity();
-				String jsonString = EntityUtils.toString(responseEntity);
-				return jsonString;
+				return EntityUtils.toString(responseEntity);
 			} else {
 				System.out.println("请求返回:" + state + "(" + url + ")");
 			}
