@@ -1,4 +1,4 @@
-package demo;
+package codes.demo.file;
 
 import java.io.File;
 import java.util.concurrent.CountDownLatch;

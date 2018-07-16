@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="app.name" value="AlienX"/>
+
+	<!-- 业务日志路径-->
+	<property name="logging.path" value="${LOG_HOME}"/>
+	<!--<property name="log.save.time.hour" value="168"/>-->
+	<!-- 日志保存时间(天) 保存多久运维来处理-->
+	<!--<property name="log.save.time.day" value="7"/>-->
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<encoder>
+			<Pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}\t[%thread]\t%-5level\t%logger\t-\t%X,%m%n</Pattern>
+			<charset class="java.nio.charset.Charset">utf-8</charset>
+		</encoder>
+	</appender>
+
+	<!-- 以前的方式 打印INFO以上全量日志 按大小滚动 -->
+	<appender name="COMMON-ALL-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<encoder>
+			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}\t[%thread]\t%-5level\t%logger\t-\t%X,%msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<file>${logging.path}/${app.name}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logging.path}/${app.name}.log.%d{yyyy-MM-dd}-%i</fileNamePattern>
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>40MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<logger name="ALL" additivity="true">
+		<appender-ref ref="COMMON-ALL-APPENDER"/>
+	</logger>
+	<root>
+		<appender-ref ref="CONSOLE"/>
+	</root>
+</configuration>

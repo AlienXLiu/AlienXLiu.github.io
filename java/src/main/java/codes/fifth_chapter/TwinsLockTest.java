@@ -1,4 +1,4 @@
-package fifth_chapter;
+package codes.fifth_chapter;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
@@ -28,6 +28,7 @@ public class TwinsLockTest {
 		Worker(String name) {
 			setName(name);
 		}
+
 		@Override
 		public void run() {
 			while (true) {

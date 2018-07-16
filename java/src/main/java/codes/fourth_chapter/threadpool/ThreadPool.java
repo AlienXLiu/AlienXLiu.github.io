@@ -1,4 +1,4 @@
-package fourth_chapter.threadpool;
+package codes.fourth_chapter.threadpool;
 
 public interface ThreadPool<Job extends Runnable> {
 

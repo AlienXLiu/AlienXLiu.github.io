@@ -1,4 +1,4 @@
-package fourth_chapter.threadpool;
+package codes.fourth_chapter.threadpool;
 
 public class JobTest {
 	public static void main(String[] args) {
