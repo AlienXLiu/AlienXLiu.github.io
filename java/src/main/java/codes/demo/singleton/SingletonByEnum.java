@@ -1,5 +1,8 @@
 package codes.demo.singleton;
 
+/**
+ * 利用枚举即能保证线程安全也可以防止反射破坏
+ */
 public enum SingletonByEnum {
 
 	//枚举元素本身就是单例
@@ -8,15 +11,16 @@ public enum SingletonByEnum {
 	private NormalBean bean;
 
 	SingletonByEnum() {
-		System.out.println();
+		System.out.println("Enum 初始化！");
+		bean = new NormalBean();
 	}
 
-	//添加自己需要的操作
-	public void singletonOperation() {
-
+	/**
+	 *
+	 * @return
+	 */
+	public NormalBean getInstance() {
+		return bean;
 	}
-
-
-
 
 }

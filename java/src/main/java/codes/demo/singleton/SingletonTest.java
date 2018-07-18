@@ -2,11 +2,9 @@ package codes.demo.singleton;
 
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
+import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class SingletonTest {
 
@@ -17,10 +15,10 @@ public class SingletonTest {
 
 	private static Set list = new ConcurrentSkipListSet();
 
-	private static CountDownLatch latch = new CountDownLatch(10);
+	private static CountDownLatch latch;
 
 	public static void main(String[] args) {
-		runWithThreadPool();
+		createByEnum(1000);
 	}
 
 	public static void runWithThreadPool() {
@@ -64,12 +62,18 @@ public class SingletonTest {
 		System.out.println(list.size());
 	}
 
-	public static void createByEnum() {
-		for (int i = 0; i < 10000; i++) {
+	public static void createByEnum(int loop) {
+		latch = new CountDownLatch(loop);
+		for (int i = 0; i < loop; i++) {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					list.add(SingletonByEnum.INTANCE);
+					list.add(SingletonByEnum.INTANCE.getInstance());
+					try {
+						TimeUnit.MILLISECONDS.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					latch.countDown();
 				}
 			}, ("Thread" + i)).start();
@@ -81,7 +85,11 @@ public class SingletonTest {
 			e.printStackTrace();
 		}
 
-		System.out.println(list.size());
+		System.out.println("=====List Size========" + list.size());
+		System.out.println("=====List Elements========");
+		for (Object it : list) {
+			System.out.println(it.toString());
+		}
 	}
 
 }

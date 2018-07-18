@@ -2,6 +2,11 @@ package codes.demo.singleton;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 此类单列线程安全
+ * 但是反射可以破坏其单列模式
+ */
+
 public class SingletonByVolatile implements Comparable {
 
 	private SingletonByVolatile() {
