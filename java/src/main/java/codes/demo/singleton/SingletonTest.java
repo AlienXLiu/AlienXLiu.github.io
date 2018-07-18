@@ -2,7 +2,6 @@ package codes.demo.singleton;
 
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
-import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.*;
 
@@ -21,8 +20,9 @@ public class SingletonTest {
 		createByEnum(1000);
 	}
 
-	public static void runWithThreadPool() {
-		for (int i = 0; i < 10000; i++) {
+	public static void runWithThreadPool(int loop) {
+		latch = new CountDownLatch(loop);
+		for (int i = 0; i < loop; i++) {
 			executorService.submit(new Runnable() {
 				@Override
 				public void run() {
@@ -42,8 +42,9 @@ public class SingletonTest {
 		System.out.println(list.size());
 	}
 
-	public static void runWithRunnable() {
-		for (int i = 0; i < 10000; i++) {
+	public static void runWithRunnable(int loop) {
+		latch = new CountDownLatch(loop);
+		for (int i = 0; i < loop; i++) {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
