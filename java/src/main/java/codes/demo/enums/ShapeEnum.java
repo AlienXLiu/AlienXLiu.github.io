@@ -23,7 +23,7 @@ public enum ShapeEnum {
 
 	private String shapeType;
 
-	private ShapeEnum(String shapeType) {
+	ShapeEnum(String shapeType) {
 		this.shapeType = shapeType;
 	}
 
